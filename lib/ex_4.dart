@@ -77,7 +77,10 @@ class _ScoreCardState extends State<ScoreCard> {
       child: Column(
         spacing: 20,
         children: [
-          Text("My score in ${widget.subject}", style: TextStyle(fontSize: 32 , fontWeight: FontWeight.bold),),
+          Text(
+            "My score in ${widget.subject}",
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
