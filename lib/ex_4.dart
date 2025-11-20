@@ -24,16 +24,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
+          padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
           color: Colors.green,
-          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
-            child: Column(
-              spacing: 20,
-              children: [
-                ScoreCard(subject: "Flutter", score: 8),
-                ScoreCard(subject: "Dart", score: 6),
-              ],
-            ),
+            child: Column(spacing: 20, children: [Mycard(title: "Flutter", score: 10,)]),
           ),
         ),
       ),
@@ -41,17 +35,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ScoreCard extends StatefulWidget {
-  const ScoreCard({super.key, required this.subject, required this.score});
+class Mycard extends StatefulWidget {
+  const Mycard({super.key, required this.title, required this.score});
 
-  final String subject;
+  final String title;
   final int score;
 
   @override
-  State<ScoreCard> createState() => _ScoreCardState();
+  State<Mycard> createState() => _MycardState();
 }
 
-class _ScoreCardState extends State<ScoreCard> {
+class _MycardState extends State<Mycard> {
   late int currentScore = widget.score;
 
   void increaseScore() {
@@ -75,16 +69,12 @@ class _ScoreCardState extends State<ScoreCard> {
         color: Colors.white,
       ),
       child: Column(
-        spacing: 20,
         children: [
-          Text(
-            "My score in ${widget.subject}",
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
+          TitleCard(title: widget.title),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: 100,
+            spacing: 40,
             children: [
               IconButton(
                 icon: const Icon(Icons.remove),
@@ -108,9 +98,9 @@ class _ScoreCardState extends State<ScoreCard> {
               child: Row(
                 children: [
                   Expanded(
-                    flex: currentScore,
+                    flex: 1,
                     child: Container(
-                      height: 100,
+                      height: 20,
                       decoration: BoxDecoration(
                         color: colors[currentScore],
                         borderRadius: BorderRadius.circular(20),
@@ -119,7 +109,7 @@ class _ScoreCardState extends State<ScoreCard> {
                   ),
                   Expanded(
                     flex: 10 - currentScore,
-                    child: Container(height: 100),
+                    child: Container(height: 20),
                   ),
                 ],
               ),
@@ -127,6 +117,20 @@ class _ScoreCardState extends State<ScoreCard> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class TitleCard extends StatelessWidget {
+  const TitleCard({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "My score in $title",
+      style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
     );
   }
 }
