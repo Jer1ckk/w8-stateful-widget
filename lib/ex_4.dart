@@ -98,7 +98,7 @@ class _MycardState extends State<Mycard> {
               child: Row(
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: currentScore,
                     child: Container(
                       height: 20,
                       decoration: BoxDecoration(
